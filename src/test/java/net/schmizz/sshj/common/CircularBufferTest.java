@@ -193,8 +193,8 @@ public class CircularBufferTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowOnTooLargeInitialSize() {
-        new PlainCircularBuffer(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    public void shouldThrowOnMaximumInitialSize() {
+        new PlainCircularBuffer(Integer.MAX_VALUE, 64);
     }
 
     @Test
@@ -203,12 +203,6 @@ public class CircularBufferTest {
         PlainCircularBuffer buffer = new PlainCircularBuffer(256, maxSize);
         buffer.ensureCapacity(maxSize - 1);
         assertEquals(maxSize - 1, buffer.maxPossibleRemainingCapacity());
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowOnTooLargeRequestedMaxIntegerCapacity() throws CircularBufferException {
-        PlainCircularBuffer buffer = new PlainCircularBuffer(256, Integer.MAX_VALUE);
-        buffer.ensureCapacity(Integer.MAX_VALUE - 1);
     }
 
     @Test(expected = CircularBufferException.class)
