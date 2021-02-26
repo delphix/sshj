@@ -187,4 +187,8 @@ public interface Config {
      * @return The LoggerFactory the SSHClient will use.
      */
     LoggerFactory getLoggerFactory();
+
+    int getMaxCircularBufferSize();
+
+    void setMaxCircularBufferSize(int maxCircularBufferSize);
 }
